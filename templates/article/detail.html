@@ -13,7 +13,9 @@
             <!-- 标题及作者 -->
             <h1 class="mt-4 mb-4">{{ article.title }}</h1>
             <div class="alert alert-success">
-                作者：{{ article.author }} · 浏览：{{ article.total_views }}
+                作者：{{ article.author }} ·
+                浏览：{{ article.total_views }}
+
                 {% if user == article.author %}
                     · <a href="#" onclick="confirm_delete()">删除文章</a>
                     · <a href="{% url "app01:article_update" article.id %}">
@@ -23,6 +25,10 @@
             </div>
             <!-- 内容 -->
             <div><p>{{ article.body|safe }}</p></div>
+            <div class="alert alert-success">
+                发布：{{ article.created|date:'Y-m-d' }} ·
+                更新：{{ article.updated|date:'Y-m-d' }}
+            </div>
             <!-- 发表评论 -->
             <hr>
             {% if user.is_authenticated %}

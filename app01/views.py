@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import ArticlePost
+from .models import ArticlePost, ArticleColumn
 from .forms import ArticlePostForm
 from django.contrib.auth.models import User
 import markdown
@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
 from comment.models import Comment
-
 
 # Create your views here.
 
@@ -37,7 +36,7 @@ def article_list(request):
     paginator = Paginator(articles, 2)
     page = request.GET.get('page')
     articles = paginator.get_page(page)
-    context = {'articles': articles, 'order': order, 'search': search }
+    context = {'articles': articles, 'order': order, 'search': search}
     return render(request, 'article/list.html', context)
 
 @login_required(login_url='/userprofile/login/')
@@ -86,6 +85,8 @@ def article_create(request):
             # 如果你进行过删除数据表的操作，可能会找不到id=1的用户
             # 此时请重新创建用户，并传入此用户的id
             new_article.author = User.objects.get(id=request.user.id)
+            if request.POST['column'] != 'none':
+                new_article.cloumn = ArticleColumn.objects.get(id=request.POST['column'])
             # 将新文章保存到数据库中
             new_article.save()
             # 完成后返回到文章列表
@@ -97,8 +98,9 @@ def article_create(request):
     else:
         # 创建表单类实例
         article_post_form = ArticlePostForm()
+        columns = ArticleColumn.objects.all()
         # 赋值上下文
-        context = {'article_post_form': article_post_form}
+        context = {'article_post_form': article_post_form, 'columns': columns}
         # 返回模板
         return render(request, 'article/create.html', context)
 
@@ -125,6 +127,7 @@ def article_update(request, id):
     else:
         # 创建表单类实例
         article_post_form = ArticlePostForm()
+
         # 赋值上下文，将 article 文章对象也传递进去，以便提取旧的内容
         context = {'article': article, 'article_post_form': article_post_form}
         # 将响应返回到模板中
