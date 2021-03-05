@@ -33,7 +33,7 @@ def article_list(request):
         else:
             articles = ArticlePost.objects.all()
 
-    paginator = Paginator(articles, 2)
+    paginator = Paginator(articles, 6)
     page = request.GET.get('page')
     articles = paginator.get_page(page)
     context = {'articles': articles, 'order': order, 'search': search}
@@ -116,6 +116,10 @@ def article_update(request, id):
             # 保存新写入的 title、body 数据并保存
             article.title = request.POST['title']
             article.body = request.POST['body']
+            if request.POST['column'] != 'none':
+                article.column = ArticleColumn.objects.get(id=request.POST['column'])
+            else:
+                article.column = None
             article.save()
             # 完成后返回到修改后的文章中。需传入文章的 id 值
             return redirect("app01:article_detail", id=id)
@@ -127,8 +131,8 @@ def article_update(request, id):
     else:
         # 创建表单类实例
         article_post_form = ArticlePostForm()
-
+        columns = ArticleColumn.objects.all()
         # 赋值上下文，将 article 文章对象也传递进去，以便提取旧的内容
-        context = {'article': article, 'article_post_form': article_post_form}
+        context = {'article': article, 'article_post_form': article_post_form, 'columns': columns,}
         # 将响应返回到模板中
         return render(request, 'article/update.html', context)
