@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'app01.apps.App01Config',
     'userprofile',
     'password_reset',
+    'comment',
 
 ]
 
@@ -98,7 +99,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -130,4 +131,4 @@ EMAIL_PORT = 25
 # 是否使用 TLS
 EMAIL_USE_TLS = True
 # 默认的发件人
-DEFAULT_FROM_EMAIL = '小方的博客 <845905527@qq.com>'
+DEFAULT_FROM_EMAIL = '小方的博客'

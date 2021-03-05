@@ -6,9 +6,11 @@ import markdown
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
+from comment.models import Comment
+
 
 # Create your views here.
-@login_required(login_url='/userprofile/login/')
+
 def article_list(request):
     search = request.GET.get('search')
     order = request.GET.get('order')
@@ -48,10 +50,10 @@ def article_delete(request, id):
         return HttpResponse("仅允许post请求")
 
 
-@login_required(login_url='/userprofile/login/')
 def article_detail(request, id):
     # 取出 相应 的文章
     article = ArticlePost.objects.get(id=id)
+    comments = Comment.objects.filter(article=id)
     article.total_views += 1
     article.save(update_fields=['total_views'])
     # update_fields=[]指定了数据库只更新total_views字段
@@ -65,7 +67,7 @@ def article_detail(request, id):
             'markdown.extensions.toc',
         ])
     article.body = md.convert(article.body)
-    context = {'article': article, 'toc': md.toc}
+    context = {'article': article, 'toc': md.toc, 'comments': comments}
     return render(request, 'article/detail.html', context)
 
 
