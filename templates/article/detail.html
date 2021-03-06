@@ -81,7 +81,8 @@
                 {% endfor %}
             </div>
         </div>
-        <!-- 新增的目录 -->
+        <!-- 新增的目录 toc是一串html，有目录以a标签呈现-->
+        {% if 'href' in toc %}
         <div class="col-3 mt-4">
             <h6><p></p><strong>目录</strong></h6>
             <hr>
@@ -89,6 +90,7 @@
                 {{ toc|safe }}
             </div>
         </div>
+        {% endif %}
     </div>
 </div>
 

@@ -56,60 +56,59 @@
             <!--如果有标题图则加入-->
             {% if article.avatar %}
                 <div class="col-3">
-                    <img src="{{ article.avatar.url }}"
-                         alt="avatar"
-                         style="max-width:100%; border-radius: 20px">
+                    <img src="{{ article.avatar.url }}" alt="avatar" style="max-width:100%; border-radius: 20px">
                 </div>
+                <div class="col-9">
+            {% else %}
+                <div class="col-12">
             {% endif %}
-        <div class="col">
-            <!-- 栏目 -->
-            {% if article.column %}
-                <button type="button"
-                    class="btn btn-sm mb-2
-                        {% if article.column.title == 'Python' %}
-                            btn-success
-                        {% elif article.column.title == 'JAVA' %}
-                            btn-primary
-                        {% elif article.column.title == 'HTML' %}
-                            btn-info
-                        {% endif %}
-                    ">
-                    {{ article.column }}
-                </button>
-            {% endif %}
-            <!-- 标签 -->
-            <span>
-                {% for tag in article.tags.all %}
+                <!-- 栏目 -->
+                {% if article.column %}
+                    <button type="button"
+                        class="btn btn-sm mb-2
+                            {% if article.column.title == 'Python' %}
+                                btn-success
+                            {% elif article.column.title == 'JAVA' %}
+                                btn-primary
+                            {% elif article.column.title == 'HTML' %}
+                                btn-info
+                            {% endif %}
+                        ">
+                        {{ article.column }}
+                    </button>
+                {% endif %}
+                <!-- 标签 -->
+                <span>
+                    {% for tag in article.tags.all %}
                     <a href="{% url 'article:article_list' %}?tags={{ tag }}" class="badge badge-secondary">{{ tag }}</a>
-                {% endfor %}
-            </span>
-            <!-- 标题 -->
-            <h4>
-                <b>
-                    <a href="{% url 'article:article_detail' article.id %}" style="color: black;">
-                        {{ article.title }}</a>
-                </b>
-            </h4>
-            <!-- 摘要 -->
-            <div>
+                    {% endfor %}
+                </span>
+                <!-- 标题 -->
+                <h4>
+                    <b>
+                        <a href="{% url 'article:article_detail' article.id %}" style="color: black;">
+                            {{ article.title }}</a>
+                    </b>
+                </h4>
+                <!-- 摘要 -->
                 <p style="color: gray;">
                     {{ article.body|slice:'100' }}...
                 </p>
+                <!-- 注脚信息 -->
+                <p>
+                    <span style="color: green;">
+                        {{ article.total_views }} 浏览&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span style="color: blue;">
+                        {{ article.created|date:'Y-m-d' }} 发布&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span style="color: darkred;">
+                        {{ article.updated|date:'Y-m-d' }} 更新
+                    </span>
+                </p><hr style="width: 100%;"/>
             </div>
-            <!-- 注脚信息 -->
-            <p>
-                <span style="color: green;">
-                    {{ article.total_views }} 浏览&nbsp;&nbsp;&nbsp;
-                </span>
-                <span style="color: blue;">
-                    {{ article.created|date:'Y-m-d' }} 发布&nbsp;&nbsp;&nbsp;
-                </span>
-                <span style="color: darkred;">
-                    {{ article.updated|date:'Y-m-d' }} 更新
-                </span>
-            </p><hr style="width: 100%;"/>
         {% endfor %}
-        </div>
+
     </div>
     <!-- 页码导航 -->
     <div class="pagination row">

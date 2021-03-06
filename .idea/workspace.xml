@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2c30bf2-6ec3-475c-b36b-4a2d3a2e6286" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/comment/migrations/0002_auto_20210306_1515.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/article/20210306/05.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Django/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Django/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Django/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Django/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app01/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app01/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app01/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app01/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/comment/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/comment/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/article/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/create.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/article/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/article/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userprofile/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/userprofile/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +132,7 @@
       <workItem from="1614759314301" duration="6216000" />
       <workItem from="1614848382061" duration="17113000" />
       <workItem from="1615005757667" duration="1160000" />
-      <workItem from="1615007265647" duration="7418000" />
+      <workItem from="1615007265647" duration="12306000" />
     </task>
     <task id="LOCAL-00001" summary="评论app">
       <created>1614914399980</created>
@@ -189,22 +183,22 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="584" y="229" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1615006297996" />
-    <state width="1556" height="195" key="GridCell.Tab.0.bottom" timestamp="1615017239932">
+    <state width="1556" height="195" key="GridCell.Tab.0.bottom" timestamp="1615025431891">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="195" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1615017239932" />
-    <state width="1556" height="195" key="GridCell.Tab.0.center" timestamp="1615017239932">
+    <state width="1556" height="195" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1615025431891" />
+    <state width="1556" height="195" key="GridCell.Tab.0.center" timestamp="1615025431891">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="195" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1615017239932" />
-    <state width="1556" height="195" key="GridCell.Tab.0.left" timestamp="1615017239932">
+    <state width="1556" height="195" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1615025431891" />
+    <state width="1556" height="195" key="GridCell.Tab.0.left" timestamp="1615025431891">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="195" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1615017239932" />
-    <state width="1556" height="195" key="GridCell.Tab.0.right" timestamp="1615017239932">
+    <state width="1556" height="195" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1615025431891" />
+    <state width="1556" height="195" key="GridCell.Tab.0.right" timestamp="1615025431891">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="195" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1615017239932" />
+    <state width="1556" height="195" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1615025431891" />
     <state x="336" y="122" key="SettingsEditor" timestamp="1615006917387">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
