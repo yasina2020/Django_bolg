@@ -49,6 +49,9 @@ class ArticlePost(models.Model):
         article = super(ArticlePost, self).save(*args, **kwargs)
         # self.avater 判断该文章是否有标题图
         # not kwargs.get('update_fields')
+        # 在更新阅读量的时候，也会更新阅读量字段到ArticlePost表，这也算一次save操作，
+        # 所以为了防止在更新阅读量的时候将标题图给处理了 所以要排除这种情况。
+        # 具体可以看app01/views.py--article_detail()
         if self.avatar and not kwargs.get('update_fields'):
             # 打开图片
             image = Image.open(self.avatar)

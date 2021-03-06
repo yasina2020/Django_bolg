@@ -90,7 +90,7 @@ def profile_edit(request, id):
         if request.user != user:
             return HttpResponse("你没有权限修改此用户信息。")
 
-        profile_form = ProfileForm(request.POST,request.FILES)
+        profile_form = ProfileForm(request.POST, request.FILES)
         if profile_form.is_valid():
             # 取得清洗后的合法数据
             profile_cd = profile_form.cleaned_data

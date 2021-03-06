@@ -24,7 +24,6 @@ def article_list(request):
             Q(body__icontains=search)
         )
     else:
-        print('search:', search, '-------------')
         search = ''
 
     if column is not None and column.isdigit():
@@ -81,10 +80,11 @@ def article_detail(request, id):
 # 写文章的视图
 @login_required(login_url='/userprofile/login/')
 def article_create(request):
-    # 判断用户是否提交数据
+    # POST
     if request.method == "POST":
         # 将提交的数据赋值到表单实例中
-        article_post_form = ArticlePostForm(data=request.POST, request.FILES)
+        # 标题图是文件，应该在request.FILES里获取它，而不是request.POST
+        article_post_form = ArticlePostForm(request.POST, request.FILES)
         # 判断提交的数据是否满足模型的要求
         if article_post_form.is_valid():
             # 保存数据，但暂时不提交到数据库中
@@ -105,7 +105,7 @@ def article_create(request):
         # 如果数据不合法，返回错误信息
         else:
             return HttpResponse("表单内容有误，请重新填写。")
-    # 如果用户请求获取数据
+    # GET
     else:
         # 创建表单类实例
         article_post_form = ArticlePostForm()

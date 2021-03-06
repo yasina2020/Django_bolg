@@ -12,7 +12,8 @@
 
 <!-- 定义放置文章标题的div容器 -->
 <div class="container">
-<nav aria-label="breadcrumb">
+    <!-- 排序 -->
+    <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
             <a href="{% url 'app01:article_list' %}?search={{ search }}">
@@ -24,7 +25,7 @@
              </li>
         </ol>
     </nav>
-<!-- 搜索栏 -->
+    <!-- 搜索栏 -->
     <div class="row">
         <div class="col-auto mr-auto">
             <form class="form-inline" >
@@ -38,8 +39,7 @@
             </form>
         </div>
     </div>
-
-    <!-- 新增，搜索提示语 -->
+    <!-- 搜索提示语 -->
     {% if search %}
         {% if articles %}
             <h4><span style="color: red">"{{ search }}"</span>的搜索结果如下：</h4>
@@ -49,11 +49,19 @@
             <hr>
         {% endif %}
     {% endif %}
-<!-- 页码导航 -->
+    <!-- 目标文章列表--修改循环加入标题图 -->
     <div class="row mt-2">
         {% for article in articles %}
         <!-- 文章内容 -->
-        <div class="col-12">
+            <!--如果有标题图则加入-->
+            {% if article.avatar %}
+                <div class="col-3">
+                    <img src="{{ article.avatar.url }}"
+                         alt="avatar"
+                         style="max-width:100%; border-radius: 20px">
+                </div>
+            {% endif %}
+        <div class="col">
             <!-- 栏目 -->
             {% if article.column %}
                 <button type="button"
@@ -69,6 +77,7 @@
                     {{ article.column }}
                 </button>
             {% endif %}
+            <!-- 标签 -->
             <span>
                 {% for tag in article.tags.all %}
                     <a href="{% url 'article:article_list' %}?tags={{ tag }}" class="badge badge-secondary">{{ tag }}</a>
@@ -77,10 +86,8 @@
             <!-- 标题 -->
             <h4>
                 <b>
-                    <a href="{% url 'article:article_detail' article.id %}"
-                       style="color: black;">
-                        {{ article.title }}
-                    </a>
+                    <a href="{% url 'article:article_detail' article.id %}" style="color: black;">
+                        {{ article.title }}</a>
                 </b>
             </h4>
             <!-- 摘要 -->
@@ -89,9 +96,8 @@
                     {{ article.body|slice:'100' }}...
                 </p>
             </div>
-            <!-- 注脚 -->
+            <!-- 注脚信息 -->
             <p>
-                <!-- 附加信息 -->
                 <span style="color: green;">
                     {{ article.total_views }} 浏览&nbsp;&nbsp;&nbsp;
                 </span>
@@ -101,12 +107,10 @@
                 <span style="color: darkred;">
                     {{ article.updated|date:'Y-m-d' }} 更新
                 </span>
-            </p>
-            <hr>
-        </div>
+            </p><hr style="width: 100%;"/>
         {% endfor %}
+        </div>
     </div>
-
     <!-- 页码导航 -->
     <div class="pagination row">
         <div class="m-auto">
@@ -140,6 +144,5 @@
             </span>
         </div>
     </div>
-
 </div>
 {% endblock content %}
