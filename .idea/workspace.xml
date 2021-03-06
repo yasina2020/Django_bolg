@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2c30bf2-6ec3-475c-b36b-4a2d3a2e6286" name="默认更改列表" comment="">
+      <change afterPath="$PROJECT_DIR$/app01/migrations/0004_articlepost_tags.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app01/migrations/0005_articlepost_avatar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9a092009-5d74-4979-ada5-d4d6fbc4aeae.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9a092009-5d74-4979-ada5-d4d6fbc4aeae.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Django/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Django/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app01/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/app01/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app01/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app01/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app01/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app01/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/article/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/create.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/article/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/article/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/update.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +85,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -127,7 +133,9 @@
       <workItem from="1614487171515" duration="42577000" />
       <workItem from="1614741685491" duration="4493000" />
       <workItem from="1614759314301" duration="6216000" />
-      <workItem from="1614848382061" duration="15541000" />
+      <workItem from="1614848382061" duration="17113000" />
+      <workItem from="1615005757667" duration="1160000" />
+      <workItem from="1615007265647" duration="3701000" />
     </task>
     <task id="LOCAL-00001" summary="评论app">
       <created>1614914399980</created>
@@ -159,34 +167,38 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="224" y="88" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1614488720278" />
+    <state x="779" y="229" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1615006172263">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="779" y="229" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1600.860@0.0.1600.860" timestamp="1615006172263" />
     <state x="421" y="10" key="CommitChangelistDialog2" timestamp="1614940944809">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="421" y="10" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1614940944809" />
-    <state x="584" y="229" key="FileChooserDialogImpl" timestamp="1614519801718">
+    <state x="584" y="229" key="FileChooserDialogImpl" timestamp="1615006297996">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="584" y="229" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1614519801718" />
-    <state width="1433" height="191" key="GridCell.Tab.0.bottom" timestamp="1614939124022">
+    <state x="584" y="229" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1615006297996" />
+    <state width="1094" height="195" key="GridCell.Tab.0.bottom" timestamp="1615009274245">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1433" height="191" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1614939124022" />
-    <state width="1433" height="191" key="GridCell.Tab.0.center" timestamp="1614939124022">
+    <state width="1094" height="195" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1615009274245" />
+    <state width="1094" height="195" key="GridCell.Tab.0.center" timestamp="1615009274245">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1433" height="191" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1614939124022" />
-    <state width="1433" height="191" key="GridCell.Tab.0.left" timestamp="1614939124021">
+    <state width="1094" height="195" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1615009274245" />
+    <state width="1094" height="195" key="GridCell.Tab.0.left" timestamp="1615009274245">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1433" height="191" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1614939124021" />
-    <state width="1433" height="191" key="GridCell.Tab.0.right" timestamp="1614939124022">
+    <state width="1094" height="195" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1615009274245" />
+    <state width="1094" height="195" key="GridCell.Tab.0.right" timestamp="1615009274245">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1433" height="191" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1614939124022" />
-    <state x="193" y="81" key="SettingsEditor" timestamp="1614864693275">
+    <state width="1094" height="195" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1615009274245" />
+    <state x="336" y="122" key="SettingsEditor" timestamp="1615006917387">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="193" y="81" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1614864693275" />
+    <state x="336" y="122" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1615006917387" />
     <state x="446" y="320" width="716" height="309" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1614519808436">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

@@ -8,36 +8,44 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from comment.models import Comment
 
+
 # Create your views here.
 
 def article_list(request):
     search = request.GET.get('search')
     order = request.GET.get('order')
+    column = request.GET.get('column')
+    tag = request.GET.get('tags')
+    articles = ArticlePost.objects.all()
+
     if search:
-        if order == 'total_views':
-            # 用 Q对象 进行联合搜索
-            articles = ArticlePost.objects.filter(
-                Q(title__icontains=search) |
-                Q(body__icontains=search)
-            ).order_by('-total_views')
-        else:
-            articles = ArticlePost.objects.filter(
-                Q(title__icontains=search) |
-                Q(body__icontains=search)
-            )
+        articles = articles.filter(
+            Q(title__icontains=search) |
+            Q(body__icontains=search)
+        )
     else:
-        # 将 search 参数重置为空
+        print('search:', search, '-------------')
         search = ''
-        if order == 'total_views':
-            articles = ArticlePost.objects.all().order_by('-total_views')
-        else:
-            articles = ArticlePost.objects.all()
+
+    if column is not None and column.isdigit():
+        articles = articles.filter(column=column)
+
+    if tag and tag != 'None':
+        articles = articles.filter(tags__name__in=[tag])
+
+    if order == 'total_views':
+        articles = articles.order_by('-total_views')
 
     paginator = Paginator(articles, 6)
     page = request.GET.get('page')
     articles = paginator.get_page(page)
-    context = {'articles': articles, 'order': order, 'search': search}
+    context = {'articles': articles,
+               'order': order,
+               'search': search,
+               'tag': tag,
+               }
     return render(request, 'article/list.html', context)
+
 
 @login_required(login_url='/userprofile/login/')
 def article_delete(request, id):
@@ -54,8 +62,8 @@ def article_detail(request, id):
     article = ArticlePost.objects.get(id=id)
     comments = Comment.objects.filter(article=id)
     article.total_views += 1
-    article.save(update_fields=['total_views'])
     # update_fields=[]指定了数据库只更新total_views字段
+    article.save(update_fields=['total_views'])
     md = markdown.Markdown(
         extensions=[
             # 包含 缩写、表格等常用扩展
@@ -76,10 +84,11 @@ def article_create(request):
     # 判断用户是否提交数据
     if request.method == "POST":
         # 将提交的数据赋值到表单实例中
-        article_post_form = ArticlePostForm(data=request.POST)
+        article_post_form = ArticlePostForm(data=request.POST, request.FILES)
         # 判断提交的数据是否满足模型的要求
         if article_post_form.is_valid():
             # 保存数据，但暂时不提交到数据库中
+            # 因为POST的表单中包含了图片文件，所以要将request.FILES也一并绑定到表单类中，否则图片无法正确保存
             new_article = article_post_form.save(commit=False)
             # 指定数据库中 id=1 的用户为作者
             # 如果你进行过删除数据表的操作，可能会找不到id=1的用户
@@ -89,6 +98,8 @@ def article_create(request):
                 new_article.cloumn = ArticleColumn.objects.get(id=request.POST['column'])
             # 将新文章保存到数据库中
             new_article.save()
+            # 保存 tags 的多对多关系
+            article_post_form.save_m2m()
             # 完成后返回到文章列表
             return redirect("app01:article_list")
         # 如果数据不合法，返回错误信息
@@ -103,6 +114,7 @@ def article_create(request):
         context = {'article_post_form': article_post_form, 'columns': columns}
         # 返回模板
         return render(request, 'article/create.html', context)
+
 
 @login_required(login_url='/userprofile/login/')
 def article_update(request, id):
@@ -133,6 +145,6 @@ def article_update(request, id):
         article_post_form = ArticlePostForm()
         columns = ArticleColumn.objects.all()
         # 赋值上下文，将 article 文章对象也传递进去，以便提取旧的内容
-        context = {'article': article, 'article_post_form': article_post_form, 'columns': columns,}
+        context = {'article': article, 'article_post_form': article_post_form, 'columns': columns, }
         # 将响应返回到模板中
         return render(request, 'article/update.html', context)
