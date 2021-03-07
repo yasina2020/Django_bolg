@@ -5,7 +5,8 @@
 
 
 {% block content %}
-
+<script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'prism/prism.css' %}">
 <div class="container">
     <div class="row">
         <!-- 文章内容 -->
@@ -33,26 +34,21 @@
             <hr>
             {% if user.is_authenticated %}
                 <div>
-                    <form
-                        action="{% url 'comment:post_comment' article.id %}"
-                        method="POST"
-                    >
-                    {% csrf_token %}
+                    <form action="{% url 'comment:post_comment' article.id %}" method="POST">
+                        {% csrf_token %}
                         <div class="form-group">
                             <label for="body">
-                                <strong>
-                                    我也要发言：
+                                <strong class="btn btn-success" onclick="fayan()">
+                                    我也要发言
                                 </strong>
                             </label>
-                            <textarea
-                                type="text"
-                                class="form-control"
-                                id="body"
-                                name="body"
-                                rows="2"></textarea>
+                            <div id="pinglunkuang" style="display: none">
+                                {{ comments_form.media }}
+                                {{ comments_form.body }}
+                                <!-- 提交按钮 -->
+                                <button type="submit" class="btn btn-primary ">发送</button>
+                            </div>
                         </div>
-                        <!-- 提交按钮 -->
-                        <button type="submit" class="btn btn-primary ">发送</button>
                     </form>
                 </div>
                 <br>
@@ -106,6 +102,9 @@
 </form>
 
 
+{% endblock content %}
+
+{% block script %}
 <script>
     // 删除文章的函数
     function confirm_delete() {
@@ -122,8 +121,9 @@
             },
         })
     }
+    function fayan(){
+        $('#pinglunkuang').css('display','block');
+    }
+    $(".django-ckeditor-widget").removeAttr('style');
 </script>
-
-
-
-{% endblock content %}
+{% endblock script %}

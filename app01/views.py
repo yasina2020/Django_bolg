@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import ArticlePost, ArticleColumn
+from comment.forms import CommentFrom
 from .forms import ArticlePostForm
 from django.contrib.auth.models import User
 import markdown
@@ -73,8 +74,9 @@ def article_detail(request, id):
             'markdown.extensions.toc',
         ])
     article.body = md.convert(article.body)
+    comments_form = CommentFrom()
     print(md.toc, '------------------------')
-    context = {'article': article, 'toc': md.toc, 'comments': comments}
+    context = {'article': article, 'toc': md.toc, 'comments': comments, 'comments_form': comments_form}
     return render(request, 'article/detail.html', context)
 
 

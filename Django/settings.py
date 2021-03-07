@@ -165,7 +165,7 @@ CKEDITOR_CONFIGS = {
             # 最大化
             ['Maximize']
         ],
-        # 加入代码块插件
-        'extraPlugins': ','.join(['codesnippet']),
+        # 加入代码块插件 添加 Prism 相关插件
+        'extraPlugins': ','.join(['codesnippet', 'prism', 'widget', 'lineutils']),
     }
 }
