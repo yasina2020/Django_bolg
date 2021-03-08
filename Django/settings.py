@@ -32,6 +32,14 @@ INSTALLED_APPS = [
     'comment',
     'taggit',
     'ckeditor',
+    # allauth 启动必须项
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # 可添加需要的第三方登录
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.weibo',
 
 ]
 
@@ -55,7 +63,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                'django.template.context_processors.request',  # allauth 启动必须项
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -75,6 +83,14 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+AUTHENTICATION_BACKENDS = (
+    # Django 后台可独立于 allauth 登录
+    'django.contrib.auth.backends.ModelBackend',
+    # 配置 allauth 独有的认证方法，如 email 登录
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
 
 
 # Password validation
@@ -169,3 +185,10 @@ CKEDITOR_CONFIGS = {
         'extraPlugins': ','.join(['codesnippet', 'prism', 'widget', 'lineutils']),
     }
 }
+
+# 设置站点
+SITE_ID = 1
+
+# 登录成功后重定向地址
+# 127.0.0.1:8000/accounts/login/
+LOGIN_REDIRECT_URL = '/'
